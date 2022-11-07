@@ -1,0 +1,500 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #f2f2f2;
+}
+
+.meal_head {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 0rem 4%;
+  height: 0.72rem;
+  background: linear-gradient(
+    111.15deg,
+    rgba(55, 166, 253, 0.15) 1.43%,
+    rgba(8, 123, 239, 0.15) 92.24%
+  );
+  border-radius: 0.14rem 0.14rem 0rem 0rem;
+}
+
+/* 手机 */
+.moblie_phone_meal {
+  padding-bottom: 4%;
+}
+.moblie_phone_meal .meal_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #087cf0;
+  font-weight: 600;
+  font-size: 0.3rem;
+}
+.moblie_phone_meal .meal_head img {
+  width: 0.13rem;
+  height: 0.21rem;
+}
+.meal_num {
+  width: 92%;
+  margin: 0.12rem auto 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.meal_num_big {
+  display: block;
+  box-sizing: border-box;
+  width: 49%;
+  height: 1.6rem;
+  background-color: rgba(18, 132, 242, 0.05);
+  border-radius: 0.05rem;
+  font-size: 0rem;
+  padding: 0.2rem 0rem 0rem 0.2rem;
+}
+.meal_num_big > span {
+  font-size: 0.26rem;
+  color: #626262;
+  display: inline-block;
+  padding-right: 0.3rem;
+  background: url('../../images/home/arrow_right.png') no-repeat right center;
+  background-size: 0.14rem 0.22rem;
+}
+.meal_num_big > p {
+  font-size: 0.26rem;
+  color: #333333;
+  margin-top: 0.18rem;
+}
+.meal_num_big > p > b {
+  font-size: 0.55rem;
+  font-weight: 600;
+  display: inline-block;
+  padding-right: 0.1rem;
+}
+.meal_num_small {
+  box-sizing: border-box;
+  width: 49%;
+  height: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.meal_num_small > a {
+  width: 100%;
+  height: 0.74rem;
+  font-size: 0.26rem;
+  color: #333333;
+  line-height: 0.74rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 0rem 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.meal_num_small > a p b {
+  display: inline-block;
+  margin-right: 0.05rem;
+  font-weight: 600;
+}
+.meal_num_small > a:nth-child(1) {
+  background: rgba(255, 131, 1, 0.05);
+}
+.meal_num_small > a:nth-child(2) {
+  background-color: rgba(18, 132, 242, 0.05);
+}
+
+.progress_box {
+  width: 92%;
+  margin: 0.3rem auto 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.progress_box li {
+  width: 1.68rem;
+  font-size: 0rem;
+}
+.progress_box li p {
+  color: #087cf0;
+  font-size: 0.24rem;
+}
+.progress_box li p > span {
+  font-size: 0.32rem;
+  font-weight: 600;
+  line-height: 0.28rem;
+  display: inline-block;
+  padding-right: 0.05rem;
+  color: #087cf0;
+}
+.progress_box li span {
+  font-size: 0.24rem;
+  line-height: 0.58rem;
+  color: #999999;
+  display: block;
+}
+.progress_line {
+  width: 100%;
+  height: 0.1rem;
+  border-radius: 0.1rem;
+  background: #d8d8d8;
+  overflow: hidden;
+}
+.progress_line > div {
+  height: 100%;
+  border-radius: 0.1rem;
+  background: #087cf0;
+}
+
+/* 宽带 */
+.broadband_meal {
+  padding-bottom: 4%;
+}
+.broadband_meal .meal_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #087cf0;
+  font-weight: 600;
+  font-size: 0.3rem;
+}
+.broadband_meal .meal_head > span:nth-child(1) {
+  padding-right: 0.3rem;
+  background: url('../../images/home/arrow_right.png') no-repeat right 0.13rem;
+  background-size: 0.14rem 0.22rem;
+}
+.broadband_meal .meal_head > span:nth-child(2) {
+  font-weight: 400;
+  font-size: 0.26rem;
+}
+.broadband_meal .meal_num_big {
+  height: 1.74rem;
+}
+.broadband_meal .meal_num_big > span {
+  background-image: none;
+}
+
+/* IPTV 固定电话 */
+.equal_meal {
+  padding: 4% 0rem;
+}
+.equal_meal .meal_num {
+  margin-top: 0rem;
+}
+.equal_meal .meal_num_big,
+.equal_meal .meal_num_small {
+  height: 1.74rem;
+}
+.equal_meal .meal_num_big > span {
+  background-image: none;
+}
+.equal_meal .meal_num_small > a {
+  height: 0.81rem;
+}
+/* tab标签页 end */
+
+/* 关爱版 在线客服 start */
+.flex_between {
+  width: 92%;
+  margin: 0.2rem auto 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex_between > a {
+  width: 49%;
+  height: 1.1rem;
+  line-height: 1.1rem;
+  box-sizing: border-box;
+  padding-left: 0.3rem;
+  font-weight: 600;
+  font-size: 0.36rem;
+  color: #ffffff;
+  border-radius: 0.14rem;
+}
+.flex_between > a:nth-child(1) {
+  background: url('../../images/home/a_bg1.png') no-repeat center center;
+  background-size: 100% 100%;
+}
+.flex_between > a:nth-child(2) {
+  background: url('../../images/home/a_bg2.png') no-repeat center center;
+  background-size: 100% 100%;
+}
+/* 关爱版 在线客服 end */
+
+/* 快捷服务 start */
+.serve {
+  box-sizing: border-box;
+  width: 92%;
+  margin: 0.2rem auto 0rem;
+  padding: 0rem 4%;
+  background-color: #ffffff;
+  border-radius: 0.14rem;
+}
+.card_head {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #333333;
+  font-weight: 600;
+  font-size: 0.32rem;
+  letter-spacing: 0.02rem;
+  padding: 0.2rem 0rem;
+  border-bottom: 1px solid #f2f2f2;
+}
+.serve .swiper-container {
+  width: 100%;
+  padding: 0.5rem 0rem;
+}
+.swiper-wrapper {
+  font-size: 0rem;
+}
+.swiper-pagination {
+  font-size: 0rem;
+}
+.swiper-pagination-bullet {
+  background: #087cf0 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #087cf0 !important;
+}
+.serve ul {
+  width: 100%;
+  overflow: hidden;
+}
+.serve ul li {
+  width: 25%;
+  text-align: center;
+  float: left;
+  margin-bottom: 0.3rem;
+  /*margin-left: 4%;*/
+  height: 72px;
+  overflow: hidden;
+}
+.serve ul li div {
+  width: 38px;
+  height: 38px;
+  margin: 0rem auto;
+}
+.serve ul li span {
+  font-size: 13px;
+  color: #333333;
+}
+
+.serve .serve-nav {
+  display: block;
+  width: 25%;
+  text-align: center;
+  float: left;
+  margin-bottom: 0.3rem;
+}
+.serve .serve-nav img {
+  width: 38px;
+  height: 38px;
+  margin: 0rem auto;
+}
+.serve .serve-nav span {
+  font-size: 13px;
+  color: #333333;
+  display: block;
+  text-align: center;
+}
+/* 快捷服务 end */
+
+/* 优惠办理 start */
+.discounts {
+  box-sizing: border-box;
+  width: 92%;
+  margin: 0.2rem auto 0rem;
+  padding: 0rem 4%;
+  background-color: #ffffff;
+  border-radius: 0.14rem;
+}
+.discounts .swiper-container {
+  padding: 0.3rem 0rem 0.7rem;
+}
+.discounts ul {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  /*align-items: center;*/
+  align-items: flex-start;
+  text-align: center;
+}
+/*.discounts ul li{
+    width: 31%;
+}*/
+.discounts ul li {
+  width: 32%;
+}
+.discounts ul li + li {
+  margin-left: 2%;
+}
+.discounts ul li div {
+  width: 100%;
+  height: 1.3rem;
+  border-radius: 0.14rem;
+  background-color: #087cf0;
+  overflow: hidden;
+}
+.discounts ul li div img {
+  width: 100%;
+  height: 100%;
+}
+.discounts ul li span {
+  font-size: 0.26rem;
+  padding-left: 0.1rem;
+  color: #333333;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  width: 96%;
+}
+/* 优惠办理 end */
+
+/* 业务推荐 start */
+.business {
+  box-sizing: border-box;
+  width: 92%;
+  margin: 0.2rem auto 0rem;
+  padding: 0rem 4%;
+  background-color: #ffffff;
+  border-radius: 0.14rem;
+}
+.business .swiper-container {
+  padding-top: 0.3rem;
+}
+.business .swiper-slide {
+  width: 100%;
+  height: 2.2rem;
+  border-radius: 0.14rem;
+  overflow: hidden;
+  background-color: #087cf0;
+}
+.business .swiper-slide img {
+  width: 100%;
+  height: 100%;
+}
+/* 业务推荐 end */
+
+/* 消息通知 */
+.pop_inform {
+  box-sizing: border-box;
+  width: 92%;
+  height: 0.72rem;
+  padding: 0rem 4%;
+  position: fixed;
+  left: 4%;
+  bottom: 1.45rem;
+  z-index: 999;
+  background: #fff2d0;
+  font-size: 0rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pop_inform > P {
+  font-size: 0.3rem;
+  line-height: 0.42rem;
+  color: #626262;
+  padding-left: 0.5rem;
+  background: url('../../images/home/money_icon.png') no-repeat left center;
+  background-size: 0.42rem 0.42rem;
+}
+.pop_inform > P > span {
+  color: #ff8301;
+}
+.close_pop_inform {
+  width: 0.42rem;
+  height: 0.42rem;
+}
+/*星级服务*/
+.star-row {
+  width: 92%;
+  margin: 0.2rem auto 0;
+  background: #fff6e8;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: solid 1px #ffba6a;
+  padding: 0.1rem 2%;
+  box-sizing: border-box;
+}
+.star-left {
+  display: flex;
+  align-items: center;
+  font-size: 0.3rem;
+  font-weight: 700;
+  color: #de8721;
+}
+.star-left img {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.1rem;
+}
+.star-right {
+  display: flex;
+  align-items: center;
+  font-size: 0.26rem;
+  color: #de8721;
+}
+.star-right img {
+  width: 0.1rem;
+  height: 0.2rem;
+  margin-left: 0.1rem;
+}
+
+.discounts .swiper-container-horizontal .swiper-pagination-bullets,
+.business .swiper-container-horizontal .swiper-pagination-bullets {
+  bottom: 0 !important;
+}
+
+/* 翼家小豆 */
+.beanBox {
+  width: 1.06rem;
+  height: 1.11rem;
+  position: fixed;
+  bottom: 3rem;
+  right: 0.2rem;
+  z-index: 100;
+}
+.beanBox .ico-close {
+  width: 0.4rem;
+  height: 0.4rem;
+  position: absolute;
+  top: -0.55rem;
+  right: 0;
+  padding: 0.1rem;
+  z-index: 10;
+  box-sizing: content-box;
+}
+.beanBox .btn {
+  display: inline-block;
+  width: 1.06rem;
+  height: 1.11rem;
+  /* background: url(../../images/home/bean.png) no-repeat top center; */
+  background-size: cover;
+}
+
+/* IOS禁止微信调整字体大小 */
+body {
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  -moz-text-size-adjust: 100% !important;
+}
+.manager-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0.7rem;
+  color: #fff;
+  background: #087cf0;
+  margin: 0.2rem 0.3rem 0;
+  border-radius: 0.4rem;
+  font-size: 0.28rem;
+}

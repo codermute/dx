@@ -1,0 +1,121 @@
+/* tabbar start */
+.paging_box {
+  width: 100%;
+  box-shadow: 0px 0.04rem 0.2rem rgba(0, 0, 0, 0.12);
+  padding-bottom: 0.3rem;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0rem;
+  left: 0%;
+  z-index: 999;
+}
+
+.paging {
+  margin: 0rem auto;
+  width: 92%;
+  border-radius: 0.14rem;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.paging::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 0.6rem;
+  background-color: #f2f2f2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.paging > a {
+  display: block;
+  padding-top: 0.1rem;
+  width: 50%;
+  text-align: center;
+  font-size: 0rem;
+  color: #999999;
+}
+.paging > a > img {
+  font-size: 0rem;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0rem auto;
+}
+.paging > a > span {
+  padding-top: 0.1rem;
+  font-size: 0.28rem;
+}
+.showImg {
+  display: block;
+}
+.noneImg {
+  display: none !important;
+}
+.paging > a.on {
+  color: #19a4ff;
+  font-weight: 500;
+}
+.paging > a.on .showImg {
+  display: none !important;
+}
+.paging > a.on .noneImg {
+  display: block !important;
+}
+/* .paging>a.on:nth-child(1)>span{
+  background: url('../img/index_icon.png') no-repeat left center;
+  background-size: 0.4rem 0.4rem;
+}
+.paging>a.on:nth-child(2)>span{
+  background: url('../img/search_log_icon.png') no-repeat left center;
+  background-size: 0.4rem 0.4rem;
+} */
+
+/* tabbar end */
+
+/* 弹窗基本样式 start */
+.pop_up {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  z-index: 999;
+  background-color: rgba(60, 60, 60, 0.2);
+  left: 0rem;
+  top: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+  display: none;
+}
+.pop_box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0px 0.08rem 0.28rem 4px rgba(154, 154, 154, 0.3);
+  width: 88%;
+  height: 6rem;
+  border-radius: 0.2rem;
+
+  box-sizing: border-box;
+  padding: 5%;
+  padding-top: 6%;
+}
+.pop_box > div {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.close_pop {
+  display: block;
+  font-size: 0.48rem;
+  color: #000;
+  position: fixed;
+  right: 0.1rem;
+  top: -0.1rem;
+}
+/* 弹窗基本样式 end */
