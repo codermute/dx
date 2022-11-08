@@ -5,7 +5,7 @@
     </keep-alive>
     <component :is="Component" v-if="!$route.meta.keepAlive" />
   </router-view>
-  <MainTabbar v-show="!hideTabBar" />
+  <MainTabbar v-show="showTabBar" />
 </template>
 
 <script setup>
@@ -15,12 +15,12 @@ import { useRoute } from 'vue-router'
 import MainTabbar from '@/components/MainTabbar/mainTabbar'
 
 const route = useRoute()
-const hideTabBar = ref(false)
+const showTabBar = ref(false)
 
 watch(
   () => route.path,
   () => {
-    hideTabBar.value = !!route.meta.hideTabBar
+    showTabBar.value = !!route.meta.showTabBar
   }
 )
 </script>

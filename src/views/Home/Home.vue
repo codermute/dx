@@ -45,7 +45,7 @@
       </van-tabs>
     </div>
 
-    <otherServices @navigateToConcern="$router.push('concernLoveVersions')" />
+    <otherServices @navigateToConcern="$router.push('/concernLoveVersions')" />
 
     <!-- 快捷服务 -->
     <swipe title="快捷服务">
@@ -102,11 +102,8 @@ const currentIndex = ref(0)
 
   margin: 0 auto;
   padding-bottom: 1.2rem;
-  width: 100%;
   min-width: 320px;
   max-width: 750px;
-  position: relative;
-  overflow: hidden;
   background-image: url('../../assets/images/home/head_bg.png');
   background-size: 100%;
   background-position: center top;

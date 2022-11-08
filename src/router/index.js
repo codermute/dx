@@ -9,7 +9,10 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      showTabBar: true
+    }
   },
   {
     path: '/concernLoveVersions',
@@ -19,7 +22,8 @@ const routes = [
         /* webpackChunkName: "concernLoveVersions" */ '../views/concernLoveVersions/index.vue'
       ),
     meta: {
-      keepAlive: true
+      keepAlive: true,
+      showTabBar: true
     }
   },
   {
@@ -27,8 +31,7 @@ const routes = [
     name: 'PhoneBind',
     component: () => import('../views/phoneBind/phone-bind.vue'),
     meta: {
-      keepAlive: true,
-      hideTabBar: true
+      keepAlive: true
     }
   }
 ]
