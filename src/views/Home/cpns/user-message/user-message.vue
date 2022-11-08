@@ -22,7 +22,9 @@
 
     <div class="user_box_none">
       <span>未绑定账号</span>
-      <span class="binding">去绑定</span>
+      <span class="binding" style="background-color: rgb(191 223 255 / 20%)"
+        >去绑定</span
+      >
     </div>
 
     <div class="none_meal">
@@ -131,7 +133,7 @@
   font-size: 0.36rem;
   color: #ffffff;
 }
-.user_box_none > span:nth-child(2) {
+.binding {
   width: 1.64rem;
   height: 0.62rem;
   text-align: center;
@@ -140,7 +142,7 @@
   box-shadow: 0px 0.04rem 0.2rem rgba(0, 0, 0, 0.12);
   color: #ffffff;
   font-size: 0.3rem;
-  background-color: rgb(191 223 255 / 20%);
+  background: rgb(191 223 255 / 20%);
 }
 
 .none_meal {

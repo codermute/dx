@@ -11,6 +11,7 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
+      keepAlive: true,
       showTabBar: true
     }
   },
@@ -30,6 +31,14 @@ const routes = [
     path: '/phoneBind',
     name: 'PhoneBind',
     component: () => import('../views/phoneBind/phone-bind.vue'),
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
+    path: '/broadband',
+    name: 'Broadband',
+    component: () => import('../views/broadband/broadband.vue'),
     meta: {
       keepAlive: true
     }

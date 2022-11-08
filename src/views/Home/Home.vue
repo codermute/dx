@@ -65,12 +65,13 @@
     <!-- 业务推荐 -->
     <swipe title="业务推荐" :autoplay="3000" />
 
-    <div class="pop_inform">
+    <div class="pop_inform" v-show="isEvaluation">
       <p>评价此次小程序服务，<span>积分+40</span></p>
       <img
         class="close_pop_inform"
         src="@/assets/images/home/close_pop_inform.png"
         alt="关闭"
+        @click="isEvaluation = false"
       />
     </div>
 
@@ -89,6 +90,7 @@ import otherServices from './cpns/other-services/other-services.vue'
 import swipe from './cpns/swipe/swipe.vue'
 
 const currentIndex = ref(0)
+const isEvaluation = ref(true)
 </script>
 
 <style lang="less" scoped>
