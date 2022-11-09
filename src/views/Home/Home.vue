@@ -45,7 +45,7 @@
       </van-tabs>
     </div>
 
-    <otherServices @navigateToConcern="$router.push('/concernLoveVersions')" />
+    <otherServices @navigateToConcern="$router.push('/concernhome')" />
 
     <!-- 快捷服务 -->
     <swipe title="快捷服务">

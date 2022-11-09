@@ -16,11 +16,11 @@ const routes = [
     }
   },
   {
-    path: '/concernLoveVersions',
-    name: 'ConcernLoveVersions',
+    path: '/concernhome',
+    name: 'ConcernHome',
     component: () =>
       import(
-        /* webpackChunkName: "concernLoveVersions" */ '../views/concernLoveVersions/index.vue'
+        /* webpackChunkName: "concernhome" */ '../views/concernhome/concernhome.vue'
       ),
     meta: {
       keepAlive: true,
@@ -28,17 +28,17 @@ const routes = [
     }
   },
   {
-    path: '/phoneBind',
-    name: 'PhoneBind',
-    component: () => import('../views/phoneBind/phone-bind.vue'),
+    path: '/bind',
+    name: 'Binding',
+    component: () => import('../views/bind/bind.vue'),
     meta: {
       keepAlive: true
     }
   },
   {
-    path: '/broadband',
-    name: 'Broadband',
-    component: () => import('../views/broadband/broadband.vue'),
+    path: '/account',
+    name: 'Account',
+    component: () => import('../views/account/account.vue'),
     meta: {
       keepAlive: true
     }

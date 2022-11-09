@@ -21,7 +21,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const activeHomeList = ['/', '/home', '/concernLoveVersions']
+const activeHomeList = ['/', '/home', '/concernhome']
 
 const isActiveHome = computed(() => activeHomeList.includes(route.path))
 </script>

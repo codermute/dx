@@ -1,0 +1,187 @@
+﻿.popup {
+  width: 7.5rem;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.popup_center .popupContainer {
+  width: 6.8rem;
+  background-color: #fff;
+  border-radius: 0.1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.popupContainer .close {
+  width: 0.72rem;
+  height: 0.72rem;
+  position: absolute;
+  z-index: 10;
+}
+.popupContainer .close.upper {
+  top: -0.9rem;
+  right: 0;
+}
+.popupContainer .close.lower {
+  width: 0.64rem;
+  height: 0.64rem;
+  left: 50%;
+  bottom: -1rem;
+  transform: translateX(-50%);
+}
+.popup_bottom .popupContainer {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
+  overflow: hidden;
+  transform: translateY(200%);
+  transition: all 0.5s ease;
+}
+.popup_bottom .popupContainer.active {
+  transform: translateY(0);
+}
+.popup_bottom .inner {
+  padding: 1rem 0.3rem 0.15rem;
+  font-size: 0.28rem;
+  color: #333;
+}
+.pp_cont {
+  padding: 0.5rem 0.3rem 0.1rem;
+}
+.pp_cont .head {
+  margin-bottom: 0.45rem;
+  font-size: 0.28rem;
+  color: #333;
+}
+.pp_cont .head .cor {
+  color: #0c7ff1;
+}
+.pp_cont .head .num {
+  font-weight: bold;
+}
+.pp_cont .list {
+  max-height: 5rem;
+  overflow-y: auto;
+}
+.pp_cont .list .item {
+  margin-bottom: 0.15rem;
+  padding: 0.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.15rem;
+  font-size: 0.26rem;
+  color: #adadad;
+  background-repeat: no-repeat;
+  background-size: 0.6rem 0.6rem;
+  background-position: right bottom;
+  position: relative;
+}
+.pp_cont .list .item.active {
+  border-color: #0c7ff1;
+  color: #333;
+  background-image: url(../../images/phoneBind/check-triangle.png);
+}
+.pp_cont .list .item .tag {
+  padding: 0.06rem 0.12rem;
+  font-size: 0.2rem;
+  color: #888;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 0.15rem;
+}
+.pp_cont .list .item .text {
+  margin-top: 0.05rem;
+}
+.pp_cont .succ_txt {
+  padding: 0.5rem;
+  font-size: 0.36rem;
+  color: #333333;
+  text-align: center;
+}
+.pp_foot {
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.pp_foot .btn {
+  width: 100%;
+  height: 1rem;
+  background: #0c7ff1;
+  border-radius: 0.2rem;
+  font-size: 0.28rem;
+  color: #fffefe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popup-5 .popupContainer {
+  width: 6.5rem;
+  overflow: hidden;
+}
+.popup-5 .pp_foot {
+  padding: 0;
+  height: 1rem;
+  border-top: 1px solid #ddd;
+}
+.popup-5 .pp_foot .btn {
+  width: 50%;
+  height: 100%;
+  border-radius: 0;
+  background-color: #fff;
+  color: #333;
+}
+.popup-5 .pp_foot .btn-1 {
+  border-right: 1px solid #ddd;
+}
+.popup-5 .pp_foot .btn-2 {
+  background-color: #0c7ff1;
+  color: #fff;
+}
+.popup-6 .popupContainer {
+  width: 6rem;
+  overflow: hidden;
+}
+.popup-6 .pp_cont {
+  padding: 0.8rem 0.35rem 0.6rem;
+}
+.pp_cont .mt {
+  margin-bottom: 0.3rem;
+  text-align: center;
+  font-size: 0.32rem;
+  color: #333;
+  font-weight: 600;
+}
+.popup-6 .pp_cont .mc {
+  text-align: center;
+  font-size: 0.28rem;
+  color: #333;
+}
+.popup-6 .pp_cont .mc .mobile {
+  color: #0c7ff1;
+}
+.popup-6 .pp_foot {
+  padding: 0;
+}
+.popup-6 .pp_foot .btn {
+  height: 0.8rem;
+  border-radius: 0;
+}
+.popup-6 .pp_foot .btn-1 {
+  background: #f0f0f0;
+  color: #0c7ff1;
+}
