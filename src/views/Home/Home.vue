@@ -105,7 +105,7 @@ const isEvaluation = ref(true)
   margin: 0 auto;
   padding-bottom: 1.2rem;
   min-width: 320px;
-  max-width: 750px;
+  // max-width: 750px;
   background-image: url('../../assets/images/home/head_bg.png');
   background-size: 100%;
   background-position: center top;

@@ -1,5 +1,6 @@
 <template>
   <div class="page page4">
+    <!-- 手机绑定 -->
     <template v-if="!activeIndex">
       <authentication v-show="!tabCurrent" @handleClick="handleClick">
         <template #control>
@@ -20,16 +21,25 @@
       </machine>
     </template>
 
+    <!-- 宽带绑定 -->
     <template v-else-if="activeIndex === 1">
       <authentication :activeIndex="activeIndex" />
     </template>
 
+    <!-- IPTV绑定 -->
     <template v-else-if="activeIndex === 2">
-      <authentication :activeIndex="activeIndex" />
+      <authentication
+        :activeIndex="activeIndex"
+        @handleClick="isShowIptv = true"
+      />
     </template>
 
+    <!-- 固话绑定 -->
     <template v-else-if="activeIndex === 3">
-      <authentication :activeIndex="activeIndex">
+      <authentication
+        :activeIndex="activeIndex"
+        @handleClick="isShowNetwork = true"
+      >
         <template #fixed>
           <div class="item">
             <div class="icon">
@@ -59,73 +69,18 @@
     </div>
 
     <!-- 模态框1 -- IPTV绑定账号 -->
-    <!-- <div class="popup popup_center popup-1" v-if="showIptv">
-      <div class="popupContainer">
-        <img
-          src="@/assets/images/phoneBind/close.png"
-          class="close upper"
-          @click="onClosePopup"
-        />
-        <div class="pp_cont">
-          <div class="selection">
-            <div class="shead">
-              身份证<a class="cor">430320********7018</a>名下有<em
-                class="num"
-                >{{ iptvList.length }}</em
-              >条宽带，请选择要绑定的宽带：
-            </div>
-            <ul class="scont">
-              <template v-for="(item, index) in iptvList" :key="index">
-                <li
-                  :class="['item', { active: optionCurrent === index }]"
-                  @click="onSelectItem(index)"
-                >
-                  IPTV账号：{{ item }}
-                </li>
-              </template>
-            </ul>
-          </div>
-        </div>
-        <div class="pp_foot">
-          <span class="btn">确认绑定</span>
-        </div>
-      </div>
-    </div> -->
+    <iptvPopup
+      :iptvList="iptvList"
+      :isShowIptv="isShowIptv"
+      @closeClick="isShowIptv = false"
+    />
 
     <!-- 模态框2 -- 宽带绑定账号 -->
-    <!-- <div class="popup popup_center popup-2" v-if="showNetwork">
-      <div class="popupContainer">
-        <img
-          src="@/assets/images/phoneBind/close.png"
-          class="close upper"
-          @click="onClosePopup"
-        />
-        <div class="pp_cont">
-          <div class="selection">
-            <div class="shead">
-              身份证<a class="cor">430320********7018</a>名下有<em
-                class="num"
-                >{{ networkList.length }}</em
-              >条宽带，请选择要绑定的宽带：
-            </div>
-            <ul class="scont">
-              <template v-for="(item, index) in networkList" :key="index">
-                <li
-                  :class="['item', { active: optionCurrent === index }]"
-                  @click="onSelectItem(index)"
-                >
-                  <div class="name">IPTV账号：{{ item.name }}</div>
-                  <div class="text">原套餐：{{ item.text }}</div>
-                </li>
-              </template>
-            </ul>
-          </div>
-        </div>
-        <div class="pp_foot">
-          <span class="btn">确认绑定</span>
-        </div>
-      </div>
-    </div> -->
+    <networkPopup
+      :isShowNetwork="isShowNetwork"
+      :networkList="networkList"
+      @closeNetwork="isShowNetwork = false"
+    />
 
     <!-- 模态框3 -- 绑定成功 -->
     <popupSucceed
@@ -142,6 +97,8 @@ import { useRouter } from 'vue-router'
 import tabControl from './cpns/tabControl/tabControl.vue'
 import authentication from './cpns/authentication/authentication.vue'
 import machine from './cpns/machine/machine.vue'
+import iptvPopup from './cpns/iptvPopup/iptvPopup.vue'
+import networkPopup from './cpns/networkPopup/networkPopup.vue'
 import popupSucceed from './cpns/popupSucceed/popupSucceed'
 
 const router = useRouter()
@@ -156,6 +113,16 @@ const footerTabs = ref([
 ])
 
 const showConfirm = ref(false)
+const isShowIptv = ref(false)
+const isShowNetwork = ref(false)
+
+const iptvList = ['0731****6448@VOD', '0731****6214@VOD', '0731****1820@VOD']
+const networkList = [
+  { name: '0731****6448@VOD', text: '50M有线宽带不限时-240元档' },
+  { name: '0731****6448@VOD', text: '30M有线宽带不限时-100元档' },
+  { name: '0731****6448@VOD', text: '100M有线宽带不限时-300元档' },
+  { name: '0731****6448@VOD', text: '300M有线宽带不限时-360元档' }
+]
 
 const handleTabTrigger = (type) => {
   if (activeIndex.value === type) return
@@ -164,6 +131,9 @@ const handleTabTrigger = (type) => {
       footerTabs.value[0] = { name: '宽带绑定', type: 1 }
       break
     case 1:
+      footerTabs.value[0] = { name: '手机绑定', type: 0 }
+      break
+    case 2:
       footerTabs.value[0] = { name: '手机绑定', type: 0 }
       break
   }

@@ -42,6 +42,14 @@ const routes = [
     meta: {
       keepAlive: true
     }
+  },
+  {
+    path: '/remove',
+    name: 'Remove',
+    component: () => import('../views/remove/remove.vue'),
+    meta: {
+      keepAlive: true
+    }
   }
 ]
 

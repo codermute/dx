@@ -32,9 +32,9 @@
                   <template v-for="(item, index) in networkList" :key="index">
                     <li
                       :class="['col', { active: item.state }]"
-                      data-target="2"
+                      @click="handleClick(index, networkList)"
                     >
-                      <span class="tag" v-if="index == 0">在线</span>
+                      <span class="tag" v-if="!index">在线</span>
                       <span class="tag" v-else>绑定</span>
                       <div class="name">宽带账号：{{ item.name }}</div>
                       <div class="text">原套餐：{{ item.text }}</div>
@@ -53,10 +53,10 @@
                   <template v-for="(item, index) in iptvList" :key="index">
                     <li
                       :class="['col', { active: item.state }]"
-                      data-target="3"
+                      @click="handleClick(index, iptvList)"
                     >
-                      <span class="tag" v-if="item.state == 1">在线</span>
-                      <span class="tag" v-if="item.state == 2">绑定</span>
+                      <span class="tag" v-if="item.state === 1">在线</span>
+                      <span class="tag" v-if="item.state === 2">绑定</span>
                       <div class="name">宽带账号：{{ item.account }}</div>
                       <div class="text">原套餐：{{ item.text }}</div>
                       <div class="text">地址：{{ item.address }}</div>
@@ -74,7 +74,7 @@
                   <template v-for="(item, index) in telList" :key="index">
                     <li
                       :class="['col', { active: item.state }]"
-                      data-target="4"
+                      @click="handleClick(index, telList)"
                     >
                       <div class="name">固话号码：{{ item.name }}</div>
                     </li>
@@ -86,7 +86,10 @@
         </div>
       </div>
       <div class="page_btns">
-        <a :class="['btn_confirm', { on: isBinding }]">
+        <a
+          :class="['btn_confirm', { on: isBinding }]"
+          @click="isShowSuccess = true"
+        >
           <span class="txt">确认绑定</span>
           <img
             src="@/assets/images/phoneBind/arr@55.png"
@@ -96,23 +99,31 @@
       </div>
 
       <!-- 模态框 -- 绑定成功 -->
-      <!-- <div class="popup popup_center popup-5">
+      <div class="popup popup_center popup-5" v-if="isShowSuccess">
         <div class="popupContainer">
           <div class="pp_cont">
             <p class="succ_txt">绑定成功!</p>
           </div>
           <div class="pp_foot">
-            <span class="btn btn-1">暂不前往</span>
-            <span class="btn btn-2">前往服务大厅</span>
+            <span class="btn btn-1" @click="isShowSuccess = false"
+              >暂不前往</span
+            >
+            <span
+              class="btn btn-2"
+              @click=";(isShowSuccess = false), $router.push('/home')"
+              >前往服务大厅</span
+            >
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const networkList = [
+import { ref } from 'vue'
+
+const networkList = ref([
   {
     account: '0731****6448@VOD',
     text: '50M有线宽带不限时-240元档',
@@ -125,22 +136,32 @@ const networkList = [
     address: '湖南省长沙市开福区湘江中路万达广场C栋1709',
     state: false
   }
-]
-const iptvList = [
+])
+const iptvList = ref([
   {
     account: '0731****6448@VOD',
     text: '100M有线宽带不限时-300元档',
     address: '湖南省长沙市芙蓉区天下一家华府1栋2单元2205',
     state: false
   }
-]
-const telList = [
+])
+const telList = ref([
   { name: '0731****6448@VOD', state: false },
   { name: '0731****6214@VOD', state: false },
   { name: '0731****1820@VOD', state: false }
-]
+])
+const isBinding = ref(false)
+const isShowSuccess = ref(false)
+
+const handleClick = (index, data) => {
+  data[index].state = !data[index].state
+  if (data[index].state) {
+    isBinding.value = true
+  }
+}
 </script>
 
 <style scoped>
 @import '../../assets/css/phoneBind/style.css';
+@import '../../assets/css/phoneBind/popup.css';
 </style>
