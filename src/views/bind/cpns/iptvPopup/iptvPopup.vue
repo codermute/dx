@@ -17,7 +17,10 @@
             </div>
             <ul class="scont">
               <template v-for="(item, index) in iptvList" :key="index">
-                <li :class="['item', { active: optionCurrent === index }]">
+                <li
+                  :class="['item', { active: iptvIndex === index }]"
+                  @click="changeCurrent(index)"
+                >
                   IPTV账号：{{ item }}
                 </li>
               </template>
@@ -41,12 +44,19 @@ defineProps({
   iptvList: {
     type: Array,
     default: () => []
+  },
+  iptvIndex: {
+    type: Number,
+    default: 0
   }
 })
 
-const emit = defineEmits(['closeClick'])
+const emit = defineEmits(['closeClick', 'update:iptvIndex'])
 
 const closeClick = () => {
   emit('closeClick')
+}
+const changeCurrent = (index) => {
+  emit('update:iptvIndex', index)
 }
 </script>

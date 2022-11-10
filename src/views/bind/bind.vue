@@ -23,14 +23,17 @@
 
     <!-- 宽带绑定 -->
     <template v-else-if="activeIndex === 1">
-      <authentication :activeIndex="activeIndex" />
+      <authentication
+        :activeIndex="activeIndex"
+        @handleClick="networkData.isShowNetwork = true"
+      />
     </template>
 
     <!-- IPTV绑定 -->
     <template v-else-if="activeIndex === 2">
       <authentication
         :activeIndex="activeIndex"
-        @handleClick="isShowIptv = true"
+        @handleClick="iptvData.isShowIptv = true"
       />
     </template>
 
@@ -38,7 +41,7 @@
     <template v-else-if="activeIndex === 3">
       <authentication
         :activeIndex="activeIndex"
-        @handleClick="isShowNetwork = true"
+        @handleClick="networkData.isShowNetwork = true"
       >
         <template #fixed>
           <div class="item">
@@ -70,16 +73,18 @@
 
     <!-- 模态框1 -- IPTV绑定账号 -->
     <iptvPopup
-      :iptvList="iptvList"
-      :isShowIptv="isShowIptv"
-      @closeClick="isShowIptv = false"
+      :iptvList="iptvData.iptvList"
+      :isShowIptv="iptvData.isShowIptv"
+      v-model:iptvIndex="iptvData.iptvIndex"
+      @closeClick="iptvData.isShowIptv = false"
     />
 
     <!-- 模态框2 -- 宽带绑定账号 -->
     <networkPopup
-      :isShowNetwork="isShowNetwork"
-      :networkList="networkList"
-      @closeNetwork="isShowNetwork = false"
+      :isShowNetwork="networkData.isShowNetwork"
+      :networkList="networkData.networkList"
+      v-model:networkIndex="networkData.networkIndex"
+      @closeNetwork="networkData.isShowNetwork = false"
     />
 
     <!-- 模态框3 -- 绑定成功 -->
@@ -91,7 +96,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 import tabControl from './cpns/tabControl/tabControl.vue'
@@ -111,18 +116,23 @@ const footerTabs = ref([
   { name: 'IPTV绑定', type: 2 },
   { name: '固话绑定', type: 3 }
 ])
-
 const showConfirm = ref(false)
-const isShowIptv = ref(false)
-const isShowNetwork = ref(false)
 
-const iptvList = ['0731****6448@VOD', '0731****6214@VOD', '0731****1820@VOD']
-const networkList = [
-  { name: '0731****6448@VOD', text: '50M有线宽带不限时-240元档' },
-  { name: '0731****6448@VOD', text: '30M有线宽带不限时-100元档' },
-  { name: '0731****6448@VOD', text: '100M有线宽带不限时-300元档' },
-  { name: '0731****6448@VOD', text: '300M有线宽带不限时-360元档' }
-]
+const iptvData = reactive({
+  isShowIptv: false,
+  iptvIndex: 0,
+  iptvList: ['0731****6448@VOD', '0731****6214@VOD', '0731****1820@VOD']
+})
+const networkData = reactive({
+  isShowNetwork: false,
+  networkIndex: 0,
+  networkList: [
+    { name: '0731****6448@VOD', text: '50M有线宽带不限时-240元档' },
+    { name: '0731****6448@VOD', text: '30M有线宽带不限时-100元档' },
+    { name: '0731****6448@VOD', text: '100M有线宽带不限时-300元档' },
+    { name: '0731****6448@VOD', text: '300M有线宽带不限时-360元档' }
+  ]
+})
 
 const handleTabTrigger = (type) => {
   if (activeIndex.value === type) return
@@ -145,7 +155,7 @@ const handleClick = ({ isBindRead, isBindSetMeal }) => {
     showConfirm.value = true
   }
   if (isBindSetMeal) {
-    router.push('/account')
+    router.push('/accountChoose')
   }
 }
 </script>

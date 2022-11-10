@@ -36,9 +36,9 @@ const routes = [
     }
   },
   {
-    path: '/account',
-    name: 'Account',
-    component: () => import('../views/account/account.vue'),
+    path: '/accountChoose',
+    name: 'AccountChoose',
+    component: () => import('../views/account-choose/account-choose.vue'),
     meta: {
       keepAlive: true
     }
@@ -50,6 +50,20 @@ const routes = [
     meta: {
       keepAlive: true
     }
+  },
+  {
+    path: '/accountManagement',
+    name: 'AccountManagement',
+    component: () =>
+      import('../views/account-management/account-management.vue'),
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('../views/not-found/not-found.vue')
   }
 ]
 

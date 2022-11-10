@@ -1,5 +1,5 @@
 <template>
-  <div class="account">
+  <div class="account-choose">
     <div class="page page5">
       <div class="page_main">
         <!-- <div class="mt">
