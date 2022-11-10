@@ -96,8 +96,8 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onActivated } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import tabControl from './cpns/tabControl/tabControl.vue'
 import authentication from './cpns/authentication/authentication.vue'
@@ -107,6 +107,7 @@ import networkPopup from './cpns/networkPopup/networkPopup.vue'
 import popupSucceed from './cpns/popupSucceed/popupSucceed'
 
 const router = useRouter()
+const route = useRoute()
 
 const tabs = ['短信验证绑定', '本机号码绑定']
 const tabCurrent = ref(0)
@@ -132,6 +133,10 @@ const networkData = reactive({
     { name: '0731****6448@VOD', text: '100M有线宽带不限时-300元档' },
     { name: '0731****6448@VOD', text: '300M有线宽带不限时-360元档' }
   ]
+})
+
+onActivated(() => {
+  console.log(route.query)
 })
 
 const handleTabTrigger = (type) => {

@@ -7,44 +7,52 @@
             <div class="group">
               <div class="g_head">
                 <span class="title">{{ item.title }}</span>
-                <img src="@/assets/images/phoneBind/add.png" class="ico-add" />
+                <img
+                  src="@/assets/images/phoneBind/add.png"
+                  @click="bindingData1[index].list.push({ vm: '手机号码' })"
+                  class="ico-add"
+                />
               </div>
               <div class="g_body">
                 <template v-for="(itemn, k) in item.list" :key="k">
                   <div class="item">
                     <div class="fl">
                       <img :src="item.icon" class="icon" />
-                      <span class="txt">{{ itemn.vm }}</span>
+                      <span :class="['txt', { name: !item.state }]">{{
+                        itemn.vm
+                      }}</span>
                     </div>
                     <div class="fr">
-                      <span class="txt txt-1" v-if="itemn.state == 3"
-                        >已绑定</span
-                      >
-                      <span class="txt txt-1" v-if="itemn.state == 1"
+                      <template v-if="itemn.state === 3">
+                        <span class="txt txt-1" @click="$router.push('/remove')"
+                          >已绑定</span
+                        >
+                      </template>
+                      <span class="txt txt-1" v-else-if="itemn.state === 1"
                         >在线</span
                       >
-                      <span class="txt txt-2" v-if="itemn.state == 2"
+                      <span class="txt txt-2" v-else-if="itemn.state === 2"
                         >已关联</span
                       >
+                      <template v-else>
+                        <span
+                          class="txt txt-1"
+                          @click="
+                            $router.push({
+                              path: '/bind',
+                              query: {
+                                type: 1
+                              }
+                            })
+                          "
+                          >前往关联</span
+                        >
+                      </template>
+
                       <img
                         src="@/assets/images/phoneBind/arr@1729.png"
                         class="ico_arr1"
                       />
-                    </div>
-                  </div>
-                  <div class="item add-box" :id="'addBox' + index">
-                    <div class="ite-inner">
-                      <div class="fl">
-                        <img src="" class="icon" />
-                        <span class="txt name"></span>
-                      </div>
-                      <div class="fr">
-                        <span class="txt txt-1">前往关联</span>
-                        <img
-                          src="@/assets/images/phoneBind/arr@1729.png"
-                          class="ico_arr1"
-                        />
-                      </div>
                     </div>
                   </div>
                 </template>
@@ -67,34 +75,19 @@
                       <span class="txt">{{ itemn.vm }}</span>
                     </div>
                     <div class="fr">
-                      <span class="txt txt-1" v-if="itemn.state == 3"
+                      <span class="txt txt-1" v-if="itemn.state === 3"
                         >已绑定</span
                       >
-                      <span class="txt txt-1" v-if="itemn.state == 1"
+                      <span class="txt txt-1" v-if="itemn.state === 1"
                         >在线</span
                       >
-                      <span class="txt txt-2" v-if="itemn.state == 2"
+                      <span class="txt txt-2" v-if="itemn.state === 2"
                         >已关联</span
                       >
                       <img
                         src="@/assets/images/phoneBind/arr@1729.png"
                         class="ico_arr1"
                       />
-                    </div>
-                  </div>
-                  <div class="item add-box" :id="'addBox' + index">
-                    <div class="ite-inner">
-                      <div class="fl">
-                        <img src="" class="icon" />
-                        <span class="txt name"></span>
-                      </div>
-                      <div class="fr">
-                        <span class="txt txt-1">前往关联</span>
-                        <img
-                          src="@/assets/images/phoneBind/arr@1729.png"
-                          class="ico_arr1"
-                        />
-                      </div>
                     </div>
                   </div>
                 </template>
@@ -104,21 +97,23 @@
         </div>
       </div>
       <a class="btn_reset">重置服务密码</a>
-      <a class="page-back">返回服务大厅</a>
+      <a class="page-back" @click="$router.push('/home')">返回服务大厅</a>
       <a class="btn_service" id="drag"></a>
     </div>
   </div>
 </template>
 
 <script setup>
-const bindingData1 = [
+import { ref } from 'vue'
+
+const bindingData1 = ref([
   {
     title: '手机号码',
     type: '4',
     icon: require('@/assets/images/phoneBind/adorn1.png'),
     list: [{ vm: '199****8888', state: 3 }]
   }
-]
+])
 const bindingData2 = [
   {
     title: '宽带号码',
