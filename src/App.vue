@@ -1,6 +1,6 @@
 <template>
   <router-view v-slot="{ Component }">
-    <keep-alive max="8">
+    <keep-alive>
       <component
         :is="Component"
         :key="$route.name"
