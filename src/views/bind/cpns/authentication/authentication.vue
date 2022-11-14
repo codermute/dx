@@ -43,6 +43,7 @@
                   type="text"
                   placeholder="请输入手机号码"
                   class="inp_txt"
+                  v-model="info.phone"
                 />
               </div>
             </div>
@@ -129,7 +130,7 @@
 <script setup>
 import { ref, computed, reactive } from 'vue'
 
-import { cityData } from './address_data'
+import { cityData } from '@/utils/address_data'
 import { broadData } from './form_data'
 
 const props = defineProps({
@@ -142,7 +143,8 @@ const props = defineProps({
 const emit = defineEmits(['handleClick'])
 
 const info = reactive({
-  address: ''
+  address: '',
+  phone: ''
 })
 const isDown = ref(false)
 const isBindSetMeal = ref(false) // 同步绑定
@@ -166,7 +168,8 @@ const confirm = (option) => {
 const handleClick = () => {
   emit('handleClick', {
     isBindSetMeal: isBindSetMeal.value,
-    isBindRead: isBindRead.value
+    isBindRead: isBindRead.value,
+    info: { ...info }
   })
 }
 </script>

@@ -137,6 +137,10 @@ const networkData = reactive({
 
 onActivated(() => {
   console.log(route.query)
+  if (route.query) {
+    activeIndex.value = 1
+    footerTabs.value[0] = { name: '手机绑定', type: 0 }
+  }
 })
 
 const handleTabTrigger = (type) => {
@@ -154,10 +158,10 @@ const handleTabTrigger = (type) => {
   }
   activeIndex.value = type
 }
-const handleClick = ({ isBindRead, isBindSetMeal }) => {
-  // console.log(option, '-----')
+const handleClick = ({ isBindRead, isBindSetMeal, info }) => {
   if (isBindRead && !isBindSetMeal) {
     showConfirm.value = true
+    console.log(info)
   }
   if (isBindSetMeal) {
     router.push('/accountChoose')
