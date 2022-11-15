@@ -1,13 +1,16 @@
 <template>
   <div class="paging_box">
     <div class="paging">
-      <a href="#" :class="{ on: isActiveHome }">
+      <a :class="{ on: isActiveHome }" @click="$router.push('/home')">
         <img class="showImg" src="@/assets/images/home/index_icon1.png" />
         <img class="noneImg" src="@/assets/images/home/index_icon.png" />
         <span>首页</span>
       </a>
 
-      <a href="#">
+      <a
+        :class="{ on: $route.path === '/handle' }"
+        @click="$router.push('/handle')"
+      >
         <img class="showImg" src="@/assets/images/home/search_log_icon1.png" />
         <img class="noneImg" src="@/assets/images/home/search_log_icon.png" />
         <span>查询办理</span>

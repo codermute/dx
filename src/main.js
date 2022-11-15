@@ -12,6 +12,12 @@ import './utils/rem'
 
 const app = createApp(App)
 
+app.config.globalProperties.$user = {
+  name: '梅长苏',
+  weapons: '长剑',
+  title: '刺客'
+}
+
 app.use(router)
 app.use(Vant)
 app.use(createPinia())

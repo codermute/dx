@@ -21,6 +21,7 @@
                     v-bind="item.customObj"
                     class="inp_txt"
                     v-model="info[`${item.field}`]"
+                    @blur="changeBlur(item.field, item.placeholder)"
                   />
                   <img
                     v-if="item.end_img"
@@ -44,6 +45,7 @@
                   placeholder="请输入手机号码"
                   class="inp_txt"
                   v-model="info.phone"
+                  @blur="changeBlur('phone', '请输入手机号码')"
                 />
               </div>
             </div>
@@ -59,7 +61,7 @@
                 <template v-if="!isDown">
                   <input
                     type="button"
-                    @click="isDown = true"
+                    @click="handleValidation"
                     class="btn_verify"
                     value="获取验证码"
                     id="btnSendCode1"
@@ -119,7 +121,7 @@
     >
       <van-picker
         @cancel="isAddressShow = false"
-        @confirm="confirm"
+        @confirm=";(info.address = $event.value), (isAddressShow = false)"
         :columns="cityData"
         :columns-field-names="{ text: 'value' }"
       />
@@ -129,6 +131,7 @@
 
 <script setup>
 import { ref, computed, reactive } from 'vue'
+import { Toast } from 'vant'
 
 import { cityData } from '@/utils/address_data'
 import { broadData } from './form_data'
@@ -144,6 +147,8 @@ const emit = defineEmits(['handleClick'])
 
 const info = reactive({
   address: '',
+  name: '',
+  Identity: '',
   phone: ''
 })
 const isDown = ref(false)
@@ -151,6 +156,8 @@ const isBindSetMeal = ref(false) // 同步绑定
 const isBindRead = ref(false) // 阅读
 
 const isAddressShow = ref(false)
+const reg =
+  /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/
 
 const isAsync = computed(
   () => props.activeIndex !== 1 && props.activeIndex !== 2
@@ -161,11 +168,23 @@ const changePopup = (index) => {
   if (index) return
   isAddressShow.value = true
 }
-const confirm = (option) => {
-  info.address = option.value
-  isAddressShow.value = false
+const handleValidation = () => {
+  if (!reg.test(info.phone)) {
+    return Toast('手机号格式不正确')
+  }
+  isDown.value = true
+}
+// 表单验证
+const changeBlur = (field, prompt) => {
+  console.log(info.address)
+  if (!info[field]) return Toast(prompt)
+
+  // if (!reg.test(info.phone)) return Toast('手机号格式不正确')
 }
 const handleClick = () => {
+  if (!info.address) return Toast('归属地不能为空')
+  if (!info.name) return Toast('开户姓名不能为空')
+
   emit('handleClick', {
     isBindSetMeal: isBindSetMeal.value,
     isBindRead: isBindRead.value,

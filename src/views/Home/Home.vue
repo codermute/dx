@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 
 import search from './cpns/search/search.vue'
 import userMessage from './cpns/user-message/user-message.vue'
@@ -88,6 +88,10 @@ import tabPackage from './cpns/tab-package/tab-package.vue'
 import traffic from './cpns/traffic/traffic.vue'
 import otherServices from './cpns/other-services/other-services.vue'
 import swipe from './cpns/swipe/swipe.vue'
+
+const { proxy } = getCurrentInstance()
+
+console.log(proxy.$user)
 
 const currentIndex = ref(0)
 const isEvaluation = ref(true)

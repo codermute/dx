@@ -16,6 +16,15 @@ const routes = [
     }
   },
   {
+    path: '/handle',
+    name: 'Handle',
+    component: () => import('../views/handle/handle.vue'),
+    meta: {
+      keepAlive: true,
+      showTabBar: true
+    }
+  },
+  {
     path: '/concernhome',
     name: 'ConcernHome',
     component: () =>
@@ -56,6 +65,14 @@ const routes = [
     name: 'AccountManagement',
     component: () =>
       import('../views/account-management/account-management.vue'),
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('../views/search/search.vue'),
     meta: {
       keepAlive: true
     }
