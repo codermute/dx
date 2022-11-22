@@ -43,9 +43,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onActivated } from 'vue'
 
+import useTitle from '@/hooks/useTitle'
 import { quicks } from './category_data'
+
+onActivated(() => {
+  useTitle('查询办理')
+})
 
 const menuCurrent = ref(0)
 const menus = ['手机', '宽带', 'IPTV', '报障', '服务']

@@ -164,4 +164,7 @@ const handleClick = (index, data) => {
 <style scoped>
 @import '../../assets/css/phoneBind/style.css';
 @import '../../assets/css/phoneBind/popup.css';
+.page_btns {
+  margin-bottom: 10px;
+}
 </style>

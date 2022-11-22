@@ -1,3 +1,9 @@
 <template>
-  <h3>not-found</h3>
+  <van-empty description="not-found" />
 </template>
+
+<script setup>
+import useTitle from '@/hooks/useTitle'
+
+useTitle(404)
+</script>

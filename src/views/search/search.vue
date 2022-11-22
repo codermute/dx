@@ -63,6 +63,16 @@
   </div>
 </template>
 
+<script setup>
+import { onActivated } from 'vue'
+
+import useTitle from '@/hooks/useTitle'
+
+onActivated(() => {
+  useTitle('搜索')
+})
+</script>
+
 <style scoped>
 @import '../../assets/css/handle/reset.css';
 @import '../../assets/css/handle/style.css';

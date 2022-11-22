@@ -21,7 +21,8 @@
                     v-bind="item.customObj"
                     class="inp_txt"
                     v-model="info[`${item.field}`]"
-                    @blur="changeBlur(item.field, item.placeholder)"
+                    @blur="changeBlur(item.field, item.placeholder, $event)"
+                    ref="asadad"
                   />
                   <img
                     v-if="item.end_img"
@@ -57,7 +58,12 @@
                 />
               </div>
               <div class="text_content">
-                <input type="text" placeholder="请输入验证码" class="inp_txt" />
+                <input
+                  type="text"
+                  placeholder="请输入验证码"
+                  v-model="info.code"
+                  class="inp_txt"
+                />
                 <template v-if="!isDown">
                   <input
                     type="button"
@@ -113,6 +119,7 @@
       </div>
     </div>
 
+    <!-- 获取归属地 -->
     <van-popup
       :show="isAddressShow"
       @click-overlay="isAddressShow = false"
@@ -130,8 +137,9 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { Toast } from 'vant'
+import { useStore } from '@/store/index.js'
 
 import { cityData } from '@/utils/address_data'
 import { broadData } from './form_data'
@@ -145,19 +153,32 @@ const props = defineProps({
 
 const emit = defineEmits(['handleClick'])
 
+const store = useStore()
+
+const asadad = ref(null)
+
+onMounted(() => {
+  // console.log(addEventListener)
+  // asadad.value.addEventListener('blur', () => {
+  //   console.log(1)
+  // })
+  if (asadad.value) {
+    console.log(asadad)
+  }
+})
+
 const info = reactive({
   address: '',
   name: '',
   Identity: '',
-  phone: ''
+  phone: '',
+  code: ''
 })
 const isDown = ref(false)
 const isBindSetMeal = ref(false) // 同步绑定
 const isBindRead = ref(false) // 阅读
 
 const isAddressShow = ref(false)
-const reg =
-  /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/
 
 const isAsync = computed(
   () => props.activeIndex !== 1 && props.activeIndex !== 2
@@ -169,28 +190,27 @@ const changePopup = (index) => {
   isAddressShow.value = true
 }
 const handleValidation = () => {
-  if (!reg.test(info.phone)) {
+  if (!store.phoneReg.test(info.phone)) {
     return Toast('手机号格式不正确')
   }
   isDown.value = true
 }
 // 表单验证
+let toastId = null
 const changeBlur = (field, prompt) => {
-  console.log(info.address)
-  if (!info[field]) return Toast(prompt)
-
-  // if (!reg.test(info.phone)) return Toast('手机号格式不正确')
+  if (!info[field]) return (toastId = Toast(prompt))
 }
 const handleClick = () => {
-  if (!info.address) return Toast('归属地不能为空')
-  if (!info.name) return Toast('开户姓名不能为空')
-
   emit('handleClick', {
     isBindSetMeal: isBindSetMeal.value,
     isBindRead: isBindRead.value,
     info: { ...info }
   })
 }
+
+onBeforeUnmount(() => {
+  if (toastId) toastId.clear()
+})
 </script>
 
 <style scoped>

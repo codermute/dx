@@ -80,7 +80,9 @@
 </template>
 
 <script setup>
-import { ref, getCurrentInstance } from 'vue'
+import { ref, onActivated } from 'vue'
+
+import useTitle from '@/hooks/useTitle.js'
 
 import search from './cpns/search/search.vue'
 import userMessage from './cpns/user-message/user-message.vue'
@@ -89,12 +91,15 @@ import traffic from './cpns/traffic/traffic.vue'
 import otherServices from './cpns/other-services/other-services.vue'
 import swipe from './cpns/swipe/swipe.vue'
 
-const { proxy } = getCurrentInstance()
-
-console.log(proxy.$user)
+onActivated(() => {
+  useTitle('服务大厅')
+})
 
 const currentIndex = ref(0)
 const isEvaluation = ref(true)
+
+// window.location.href =
+//   'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf07fe334d165709e&redirect_uri=https%3A%2F%2Fwx.hn.189.cn%2Fhndxym%2Fhndx_long_activities%2FauthCode&response=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
 </script>
 
 <style lang="less" scoped>

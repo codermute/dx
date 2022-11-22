@@ -23,11 +23,9 @@
 
     <!-- 宽带绑定 -->
     <template v-else-if="activeIndex === 1">
-      <authentication
-        :activeIndex="activeIndex"
-        @handleClick="networkData.isShowNetwork = true"
-      />
+      <authentication :activeIndex="activeIndex" @handleClick="handleClick" />
     </template>
+    <!-- networkData.isShowNetwork = true -->
 
     <!-- IPTV绑定 -->
     <template v-else-if="activeIndex === 2">
@@ -52,7 +50,12 @@
               />
             </div>
             <div class="text_content">
-              <input type="text" placeholder="请输入固话账号" class="inp_txt" />
+              <input
+                type="text"
+                placeholder="请输入固话账号"
+                v-model="telephone"
+                class="inp_txt"
+              />
             </div>
           </div>
         </template>
@@ -98,6 +101,10 @@
 <script setup>
 import { ref, reactive, onActivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { Toast } from 'vant'
+import { useStore } from '@/store/index.js'
+
+import useTitle from '@/hooks/useTitle'
 
 import tabControl from './cpns/tabControl/tabControl.vue'
 import authentication from './cpns/authentication/authentication.vue'
@@ -108,6 +115,7 @@ import popupSucceed from './cpns/popupSucceed/popupSucceed'
 
 const router = useRouter()
 const route = useRoute()
+const store = useStore()
 
 const tabs = ['短信验证绑定', '本机号码绑定']
 const tabCurrent = ref(0)
@@ -118,6 +126,7 @@ const footerTabs = ref([
   { name: '固话绑定', type: 3 }
 ])
 const showConfirm = ref(false)
+const telephone = ref(null)
 
 const iptvData = reactive({
   isShowIptv: false,
@@ -136,6 +145,7 @@ const networkData = reactive({
 })
 
 onActivated(() => {
+  useTitle('账号绑定')
   console.log(route.query)
   if (route.query) {
     activeIndex.value = 1
@@ -159,13 +169,30 @@ const handleTabTrigger = (type) => {
   activeIndex.value = type
 }
 const handleClick = ({ isBindRead, isBindSetMeal, info }) => {
-  if (isBindRead && !isBindSetMeal) {
-    showConfirm.value = true
-    console.log(info)
+  verification(info)
+
+  console.log('-----+  ', isBindRead, isBindSetMeal, router)
+  // if (isBindRead && !isBindSetMeal) {
+  //   showConfirm.value = true
+  // }
+  // if (isBindSetMeal) {
+  //   return router.push('/accountChoose')
+  // }
+}
+function verification(info) {
+  if (activeIndex.value) {
+    if (!info.address) return Toast('请选择输入归属地')
+    if (!info.name) return Toast('请输入开户姓名')
+    if (!info.Identity) return Toast('请输入身份证号码')
+    if (!store.identityReg.test(info.Identity)) return Toast('手机号格式不正确')
   }
-  if (isBindSetMeal) {
-    router.push('/accountChoose')
+  if (activeIndex.value === 3) {
+    if (!telephone.value) return Toast('请输入固话账号')
   }
+
+  if (!info.phone) return Toast('手机号不能为空')
+  if (!store.phoneReg.test(info.phone)) return Toast('手机号格式不正确')
+  if (!info.code) return Toast('请输入验证码')
 }
 </script>
 

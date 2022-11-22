@@ -77,6 +77,16 @@
   </div>
 </template>
 
+<script setup>
+import { onActivated } from 'vue'
+
+import useTitle from '../../hooks/useTitle'
+
+onActivated(() => {
+  useTitle('服务大厅')
+})
+</script>
+
 <style scoped>
 @import '../../assets/css/concernLoveVersions/concernLoveVersions.css';
 .opinions {
