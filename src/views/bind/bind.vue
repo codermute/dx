@@ -68,7 +68,7 @@
           v-for="(item, index) in footerTabs"
           :key="item.type"
           :class="['btn', `btn-${index + 1}`]"
-          @click="handleTabTrigger(item.type)"
+          @click="handleTabTrigger(item.type, item.name)"
           >{{ item.name }}</a
         >
       </div>
@@ -144,16 +144,19 @@ const networkData = reactive({
   ]
 })
 
+let title = null
 onActivated(() => {
-  useTitle('账号绑定')
+  title = useTitle('手机绑定')
+
   console.log(route.query)
-  if (route.query) {
+  if (route.query.type) {
     activeIndex.value = 1
+    title.value = '宽带绑定'
     footerTabs.value[0] = { name: '手机绑定', type: 0 }
   }
 })
 
-const handleTabTrigger = (type) => {
+const handleTabTrigger = (type, name) => {
   if (activeIndex.value === type) return
   switch (type) {
     case 0:
@@ -167,18 +170,16 @@ const handleTabTrigger = (type) => {
       break
   }
   activeIndex.value = type
+  title.value = name
 }
 const handleClick = ({ isBindRead, isBindSetMeal, info }) => {
-  verification(info)
+  const isPass = verification(info)
+  if (isPass) return
 
-  console.log('-----+  ', isBindRead, isBindSetMeal, router)
-  // if (isBindRead && !isBindSetMeal) {
-  //   showConfirm.value = true
-  // }
-  // if (isBindSetMeal) {
-  //   return router.push('/accountChoose')
-  // }
+  if (isBindRead && !isBindSetMeal) return (showConfirm.value = true)
+  if (isBindSetMeal) return router.push('/accountChoose')
 }
+
 function verification(info) {
   if (activeIndex.value) {
     if (!info.address) return Toast('请选择输入归属地')
@@ -193,6 +194,7 @@ function verification(info) {
   if (!info.phone) return Toast('手机号不能为空')
   if (!store.phoneReg.test(info.phone)) return Toast('手机号格式不正确')
   if (!info.code) return Toast('请输入验证码')
+  if (!/^[0-9]{6}$/.test(info.code)) return Toast('验证码格式不正确')
 }
 </script>
 

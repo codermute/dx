@@ -21,8 +21,7 @@
                     v-bind="item.customObj"
                     class="inp_txt"
                     v-model="info[`${item.field}`]"
-                    @blur="changeBlur(item.field, item.placeholder, $event)"
-                    ref="asadad"
+                    @blur="changeBlur(item.field, item.placeholder)"
                   />
                   <img
                     v-if="item.end_img"
@@ -137,7 +136,7 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, reactive, onBeforeUnmount } from 'vue'
 import { Toast } from 'vant'
 import { useStore } from '@/store/index.js'
 
@@ -154,18 +153,6 @@ const props = defineProps({
 const emit = defineEmits(['handleClick'])
 
 const store = useStore()
-
-const asadad = ref(null)
-
-onMounted(() => {
-  // console.log(addEventListener)
-  // asadad.value.addEventListener('blur', () => {
-  //   console.log(1)
-  // })
-  if (asadad.value) {
-    console.log(asadad)
-  }
-})
 
 const info = reactive({
   address: '',
@@ -198,7 +185,8 @@ const handleValidation = () => {
 // 表单验证
 let toastId = null
 const changeBlur = (field, prompt) => {
-  if (!info[field]) return (toastId = Toast(prompt))
+  // if (!info[field]) return (toastId = Toast(prompt))
+  console.log(field, prompt)
 }
 const handleClick = () => {
   emit('handleClick', {

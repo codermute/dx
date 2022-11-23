@@ -1,13 +1,7 @@
 <template>
   <div class="main">
     <!-- 消息滚动 -->
-    <van-notice-bar
-      :left-icon="require('../../assets/images/home/msg_icon.png')"
-      background="rgba(0,113,225,0.7)"
-      color="#ffffff"
-      style="height: 32px"
-      text="无论我们能活多久，我们能够享受的只有无法分割的此刻，此外别无其他。"
-    />
+    <van-notice-bar v-bind="noticeBarContent" />
 
     <!-- 搜索框 -->
     <search />
@@ -16,10 +10,7 @@
     <div class="tab_box">
       <van-tabs
         :active="currentIndex"
-        background="rgba(0,113,225,0.7)"
-        color="#ffffff"
-        title-inactive-color="#ffffff"
-        title-active-color="#ffffff"
+        v-bind="tabStyle"
         @click-tab="currentIndex = $event.name"
       >
         <template v-for="item in ['手机', '宽带', 'IPTV', '固话']" :key="item">
@@ -80,7 +71,7 @@
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, computed } from 'vue'
 
 import useTitle from '@/hooks/useTitle.js'
 
@@ -93,6 +84,25 @@ import swipe from './cpns/swipe/swipe.vue'
 
 onActivated(() => {
   useTitle('服务大厅')
+})
+
+const noticeBarUrl = require('../../assets/images/home/msg_icon.png')
+const noticeBarContent = computed(() => {
+  return {
+    'left-icon': noticeBarUrl,
+    background: 'rgba(0,113,225,0.7)',
+    color: '#ffffff',
+    style: 'height: 32px',
+    text: '无论我们能活多久，我们能够享受的只有无法分割的此刻，此外别无其他。'
+  }
+})
+const tabStyle = computed(() => {
+  return {
+    background: 'rgba(0,113,225,0.7)',
+    color: '#ffffff',
+    'title-inactive-color': '#ffffff',
+    'title-active-color': '#ffffff'
+  }
 })
 
 const currentIndex = ref(0)
