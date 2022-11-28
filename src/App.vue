@@ -19,10 +19,13 @@
 <script setup>
 import { watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from '@/store'
 
 import MainTabbar from '@/components/MainTabbar/mainTabbar'
 
 const route = useRoute()
+const store = useStore()
+
 const showTabBar = ref(false)
 
 watch(
@@ -31,4 +34,6 @@ watch(
     showTabBar.value = !!route.meta.showTabBar
   }
 )
+
+store.login()
 </script>
