@@ -8,6 +8,24 @@ class HYRequest {
       baseURL,
       timeout: TIMEOUT
     })
+
+    this.instance.interceptors.request.use(
+      (config) => {
+        return config
+      },
+      (err) => {
+        return err
+      }
+    )
+
+    this.instance.interceptors.response.use(
+      (res) => {
+        return res
+      },
+      (err) => {
+        return err
+      }
+    )
   }
 
   request(config) {
