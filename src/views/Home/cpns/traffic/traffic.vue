@@ -1,18 +1,14 @@
 <template>
   <div class="traffic">
     <ul class="progress_box">
-      <li>
-        <p><span>273.26</span>GB</p>
-        <span>通用流量剩余</span>
+      <li v-for="item in menuItem" :key="item.name">
+        <p>
+          <span>{{ item.value }}</span
+          >{{ item.symbol }}
+        </p>
+        <span>{{ item.name }}</span>
         <div class="progress_line">
-          <div style="width: 70%"></div>
-        </div>
-      </li>
-      <li>
-        <p><span>60.17</span>GB</p>
-        <span>定向流量剩余</span>
-        <div class="progress_line">
-          <div style="width: 30%"></div>
+          <div :style="{ width: `${item.length}%` }"></div>
         </div>
       </li>
       <li>
@@ -33,6 +29,15 @@
     </ul>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const menuItem = ref([
+  { value: 273.26, symbol: 'GB', name: '通用流量剩余', length: 70 },
+  { value: 60.17, symbol: 'GB', name: '定向流量剩余', length: 30 }
+])
+</script>
 
 <style lang="less" scoped>
 .swiper-container {

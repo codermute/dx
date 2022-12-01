@@ -13,18 +13,21 @@
         v-bind="tabStyle"
         @click-tab="currentIndex = $event.name"
       >
-        <template v-for="item in ['手机', '宽带', 'IPTV', '固话']" :key="item">
+        <template v-for="item in menuList" :key="item">
           <van-tab :title="item">
             <userMessage />
             <tab-package>
               <template #right v-if="currentIndex === 1">
-                <a href="#" class="meal_num_big">
-                  <span>宽带速率</span>
-                  <p><b>200</b>M</p>
-                </a>
-                <a href="#" class="meal_num_big">
-                  <span>账户余额</span>
-                  <p><b>273.26</b>元</p>
+                <a
+                  class="meal_num_big"
+                  v-for="item in menuItem"
+                  :key="item.name"
+                >
+                  <span>{{ item.name }}</span>
+                  <p>
+                    <b>{{ item.value }}</b
+                    >{{ item.symbol }}
+                  </p>
                 </a>
               </template>
               <template #bottom v-if="!currentIndex">
@@ -41,12 +44,12 @@
     <!-- 快捷服务 -->
     <swipe title="快捷服务">
       <van-grid :column-num="4" :border="false">
-        <van-grid-item
-          v-for="value in 6"
-          :key="value"
-          :icon="require('../../assets/images/home/1.png')"
-          text="文字"
-        />
+        <template v-for="value in 6" :key="value">
+          <van-grid-item
+            :icon="require('../../assets/images/home/1.png')"
+            text="文字"
+          />
+        </template>
       </van-grid>
     </swipe>
 
@@ -85,6 +88,12 @@ import swipe from './cpns/swipe/swipe.vue'
 onActivated(() => {
   useTitle('服务大厅')
 })
+
+const menuList = ['手机', '宽带', 'IPTV', '固话']
+const menuItem = ref([
+  { name: '宽带速率', value: 200, symbol: 'M' },
+  { name: '账户余额', value: 273.26, symbol: '元' }
+])
 
 const noticeBarUrl = require('../../assets/images/home/msg_icon.png')
 const noticeBarContent = computed(() => {
