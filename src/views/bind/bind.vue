@@ -173,8 +173,7 @@ const handleTabTrigger = (type, name) => {
   title.value = name
 }
 const handleClick = ({ isBindRead, isBindSetMeal, info }) => {
-  const isPass = verification(info)
-  if (isPass) return
+  if (verification(info)) return
 
   if (isBindRead && !isBindSetMeal) return (showConfirm.value = true)
   if (isBindSetMeal) return router.push('/accountChoose')

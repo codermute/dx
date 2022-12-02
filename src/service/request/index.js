@@ -40,9 +40,9 @@ class HYRequest {
           console.log('request err:', err)
           reject(err)
         })
-        .finally(() => {
-          // loadingStore.changeLoading(false)
-        })
+      // .finally(() => {
+      //   loadingStore.changeLoading(false)
+      // })
     })
   }
 
